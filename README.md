@@ -1,6 +1,6 @@
 # FrostyFunds
 
-A Kotlin/Native memory scanning tool for modifying money values in the "[Sledding Game Demo](https://store.steampowered.com/app/3438850/Sledding_Game/)". This tool demonstrates process memory manipulation using Windows API calls through Kotlin's C interop.
+A Kotlin/Native memory scanning tool for modifying money and ticket values in the "[Sledding Game Demo](https://store.steampowered.com/app/3438850/Sledding_Game/)". This tool demonstrates process memory manipulation using Windows API calls through Kotlin's C interop.
 
 > **Note:** The money in Sledding Game Demo is only used for purchasing cosmetic items. This tool is for educational purposes and personal experimentation.
 
@@ -9,15 +9,15 @@ Make sure to Wishlist the game on Steam!
 ## Features
 
 - 🔍 Interactive memory scanning with two-pass filtering
-- 💰 Automatic memory value modification
+- 💰 Simultaneous money and ticket modification
 - 🎯 User-friendly CLI interface
 - 🪟 Native Windows executable with no dependencies
 
 ## How It Works
 
-1. **First Scan**: Enter your current money amount, and the tool scans the game's memory for matching values
-2. **Second Scan**: Buy or sell something in-game, then enter the new amount to narrow down the exact memory addresses
-3. **Modify**: Enter your desired money amount, and the tool writes it to the discovered addresses
+1. **First Scan**: Enter your current money AND ticket amounts, and the tool scans the game's memory for matching values
+2. **Second Scan**: Buy or sell something in-game to change both values (e.g. spin the wheel), then enter the new amounts to narrow down the exact memory addresses
+3. **Modify**: Enter your desired money AND ticket amounts, and the tool writes them to the discovered addresses
 4. **Update**: The in-game display updates after you buy or sell something
 
 ## Building
@@ -53,12 +53,12 @@ build\bin\native\releaseExecutable\FrostyFunds.exe
 ### Usage
 
 1. Start the Sledding Game Demo
-2. Run `FrostyFunds.exe` (as Administrator if needed)
+2. Run `FrostyFunds.exe`
 3. Follow the interactive prompts:
-   - Enter your current money amount
-   - Buy/sell something in-game
-   - Enter your new money amount
-   - Enter your desired money amount
+   - Enter your current money and ticket amounts
+   - Buy/sell something in-game to change both values
+   - Enter your new money and ticket amounts
+   - Enter your desired money and ticket amounts
 4. Buy or sell something in-game to see the updated value
 
 ## Technical Details

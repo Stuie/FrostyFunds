@@ -4,16 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c094ae4-2c52-470d-aa4d-6b4a2d61b7ef" name="Changes" comment="Initial commit&#10;&#10;- Introduced `WindowsMemory.kt` for process handling (e.g., read/write memory, scanning for values)&#10;- Main.kt has a simple interactive implementation when you run&#10;- Included MIT license for the project">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+    <list default="true" id="9c094ae4-2c52-470d-aa4d-6b4a2d61b7ef" name="Changes" comment="GitHub Actions">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeTest/kotlin/Test.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -40,20 +47,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Stuie"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Stuie&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Stuie/SleddingGameMoney.git",
-    "accountId": "526559be-e865-434b-b2e3-c5d0de91d919"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Stuie/FrostyFunds.git&quot;,
+    &quot;accountId&quot;: &quot;526559be-e865-434b-b2e3-c5d0de91d919&quot;
   }
-}]]></component>
-  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\Stuart\.gradle\wrapper\dists\gradle-8.4-bin\1w5dpkrfk8irigvoxmyhowfim\gradle-8.4" javaHome="C:\Program Files\Amazon Corretto\jdk21.0.4_7" gradleVersion="8.4" />
+}</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\Stuart\.gradle\wrapper\dists\gradle-9.3.1-all\9ot9r568e8zfvvd4mn8rbu1j0\gradle-9.3.1" javaHome="C:\Program Files\Amazon Corretto\jdk25.0.1_8" gradleVersion="9.3.1" />
   <component name="KotlinMultiplatform" KONAN_HOME="C:\Users\Stuart\.konan\kotlin-native-prebuilt-windows-x86_64-2.2.20">
+    <executable TARGET="mingw_x64" TARGET_NAME="native" EXECUTABLE_NAME="test" PROJECT_PREFIX="FrostyFunds:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":linkDebugTestNative" FILE="$PROJECT_DIR$/build/bin/native/debugTest/test.exe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
     <executable TARGET="mingw_x64" TARGET_NAME="native" EXECUTABLE_NAME="FrostyFunds" PROJECT_PREFIX="FrostyFunds:" IS_TEST="false">
       <variant NAME="Debug" GRADLE_TASK=":linkDebugExecutableNative" FILE="$PROJECT_DIR$/build/bin/native/debugExecutable/FrostyFunds.exe" WORKING_DIR="C:\Users\Stuart\IdeaProjects\SleddingGameMoney" PROGRAM_PARAMS="">
         <envs />
@@ -62,11 +74,10 @@
         <envs />
       </variant>
     </executable>
-    <executable TARGET="mingw_x64" TARGET_NAME="native" EXECUTABLE_NAME="test" PROJECT_PREFIX="FrostyFunds:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":linkDebugTestNative" FILE="$PROJECT_DIR$/build/bin/native/debugTest/test.exe" WORKING_DIR="" PROGRAM_PARAMS="">
-        <envs />
-      </variant>
-    </executable>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -77,12 +88,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.SleddingGameMoney [assemble].executor": "Run",
     "Gradle.SleddingGameMoney [build].executor": "Run",
     "Gradle.SleddingGameMoney [clean].executor": "Run",
     "Gradle.runDebugExecutableNative.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
@@ -99,13 +115,60 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecapSpentCounter">
+    <option name="endsOfQuotaMs" value="1773626415642" />
+    <option name="spentUsd" value="0.028384749" />
+  </component>
+  <component name="RecapUselessUpdatesCounter">
+    <option name="suspendCountdown" value="3" />
+  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle clean" />
       <command value="gradle build" />
+      <command value="gradle assemble" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.SleddingGameMoney [build]">
+  <component name="RunManager" selected="Gradle.SleddingGameMoney [assemble]">
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="SleddingGameMoney" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SleddingGameMoney [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
     <configuration name="SleddingGameMoney [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -124,8 +187,11 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
     <configuration name="SleddingGameMoney [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -146,8 +212,11 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
     <configuration name="runDebugExecutableNative" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -168,8 +237,11 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
@@ -277,6 +349,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -284,20 +357,6 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="SleddingGameMoney" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
@@ -311,20 +370,22 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SleddingGameMoney [assemble]" />
+        <item itemvalue="Gradle.runDebugExecutableNative" />
         <item itemvalue="Gradle.SleddingGameMoney [clean]" />
         <item itemvalue="Gradle.SleddingGameMoney [build]" />
-        <item itemvalue="Gradle.runDebugExecutableNative" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>
@@ -336,7 +397,10 @@
       <option name="presentableId" value="Default" />
       <updated>1759207403767</updated>
       <workItem from="1759207404918" duration="4713000" />
-      <workItem from="1759362315530" duration="8340000" />
+      <workItem from="1759362315530" duration="10774000" />
+      <workItem from="1760291568904" duration="1618000" />
+      <workItem from="1760293740229" duration="15000" />
+      <workItem from="1771716786705" duration="6025000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit&#10;&#10;- Introduced `WindowsMemory.kt` for process handling (e.g., read/write memory, scanning for values)&#10;- Main.kt has a simple interactive implementation when you run&#10;- Included MIT license for the project">
       <option name="closed" value="true" />
@@ -346,15 +410,46 @@
       <option name="project" value="LOCAL" />
       <updated>1759368907505</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Rename project to &quot;FrostyFunds&quot; and update references in README, Gradle settings, and configuration files.">
+      <option name="closed" value="true" />
+      <created>1759380565483</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759380565483</updated>
+    </task>
+    <task id="LOCAL-00003" summary="GitHub Actions">
+      <option name="closed" value="true" />
+      <created>1759418118595</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759418118595</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add initial project files, including IntelliJ IDEA configuration and native memory manipulation utilities for Windows." />
     <MESSAGE value="Initial commit&#10;&#10;- Introduced `WindowsMemory.kt` for process handling (e.g., read/write memory, scanning for values)&#10;- Main.kt has a simple interactive implementation when you run&#10;- Included MIT license for the project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit&#10;&#10;- Introduced `WindowsMemory.kt` for process handling (e.g., read/write memory, scanning for values)&#10;- Main.kt has a simple interactive implementation when you run&#10;- Included MIT license for the project" />
+    <MESSAGE value="Rename project to &quot;FrostyFunds&quot; and update references in README, Gradle settings, and configuration files." />
+    <MESSAGE value="Initial commit&#10;&#10;Set up project for detecting memory location of money in Sledding Game Demo, and writing of new values." />
+    <MESSAGE value="Initial commit&#10;&#10;Set up project for detecting memory location of money in Sledding Game Demo, and writing of new values." />
+    <MESSAGE value="GitHub Actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="GitHub Actions" />
   </component>
 </project>
