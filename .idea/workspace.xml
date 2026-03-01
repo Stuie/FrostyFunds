@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c094ae4-2c52-470d-aa4d-6b4a2d61b7ef" name="Changes" comment="GitHub Actions">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9c094ae4-2c52-470d-aa4d-6b4a2d61b7ef" name="Changes" comment="v1.1.0 Add ticket support&#10;&#10;Upgrade Gradle version to 9.3.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nativeTest/kotlin/Test.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/WindowsMemory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/WindowsMemory.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="26" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExternalProjectsData">
@@ -45,6 +43,12 @@
     </system>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -110,17 +114,22 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "nx.console.mcp.server.install.notification.hide": "true",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773626415642" />
-    <option name="spentUsd" value="0.028384749" />
+    <option name="spentUsd" value="0.05343205" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="3" />
+    <option name="suspendCountdown" value="0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Stuart\IdeaProjects\SleddingGameMoney\assets" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -385,7 +394,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>
@@ -400,7 +409,8 @@
       <workItem from="1759362315530" duration="10774000" />
       <workItem from="1760291568904" duration="1618000" />
       <workItem from="1760293740229" duration="15000" />
-      <workItem from="1771716786705" duration="6025000" />
+      <workItem from="1771716786705" duration="7789000" />
+      <workItem from="1772327827705" duration="7873000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit&#10;&#10;- Introduced `WindowsMemory.kt` for process handling (e.g., read/write memory, scanning for values)&#10;- Main.kt has a simple interactive implementation when you run&#10;- Included MIT license for the project">
       <option name="closed" value="true" />
@@ -426,7 +436,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759418118595</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v1.1.0 Add ticket support&#10;&#10;Upgrade Gradle version to 9.3.1">
+      <option name="closed" value="true" />
+      <created>1771821007224</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1771821007224</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,6 +468,7 @@
     <MESSAGE value="Initial commit&#10;&#10;Set up project for detecting memory location of money in Sledding Game Demo, and writing of new values." />
     <MESSAGE value="Initial commit&#10;&#10;Set up project for detecting memory location of money in Sledding Game Demo, and writing of new values." />
     <MESSAGE value="GitHub Actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="GitHub Actions" />
+    <MESSAGE value="v1.1.0 Add ticket support&#10;&#10;Upgrade Gradle version to 9.3.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.1.0 Add ticket support&#10;&#10;Upgrade Gradle version to 9.3.1" />
   </component>
 </project>

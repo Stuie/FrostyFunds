@@ -117,21 +117,6 @@ object ProcessMemory {
     }
 
     /**
-     * Read a float (4 bytes) from memory
-     */
-    fun readFloat(handle: HANDLE, address: ULong): Float? {
-        val intValue = readInt(handle, address) ?: return null
-        return Float.fromBits(intValue)
-    }
-
-    /**
-     * Write a float (4 bytes) to memory
-     */
-    fun writeFloat(handle: HANDLE, address: ULong, value: Float): Boolean {
-        return writeInt(handle, address, value.toRawBits())
-    }
-
-    /**
      * Scan memory for an integer value
      * @param handle Process handle
      * @param startAddress Starting address to scan from
@@ -179,10 +164,9 @@ object ProcessMemory {
     /**
      * Get readable memory regions for a process
      * @param handle Process handle
-     * @param pid Process ID
      * @return List of memory regions (start address, size)
      */
-    fun getMemoryRegions(handle: HANDLE, pid: UInt): List<Pair<ULong, ULong>> {
+    fun getMemoryRegions(handle: HANDLE): List<Pair<ULong, ULong>> {
         val regions = mutableListOf<Pair<ULong, ULong>>()
         var address = 0uL
         val maxAddress = 0x7FFFFFFFFFFFuL // Max user-mode address on 64-bit Windows
@@ -217,19 +201,6 @@ object ProcessMemory {
     }
 
     /**
-     * Re-scan specific addresses to filter out ones that no longer match
-     * @param handle Process handle
-     * @param addresses List of addresses from previous scan
-     * @param newValue The new value to search for
-     * @return Filtered list of addresses that still match
-     */
-    fun rescanAddresses(handle: HANDLE, addresses: List<ULong>, newValue: Int): List<ULong> {
-        return addresses.filter { address ->
-            readInt(handle, address) == newValue
-        }
-    }
-
-    /**
      * Write the same integer value to multiple addresses
      * @param handle Process handle
      * @param addresses List of addresses to write to
@@ -241,9 +212,6 @@ object ProcessMemory {
         for (address in addresses) {
             if (writeInt(handle, address, value)) {
                 successCount++
-                println("Successfully wrote $value to 0x${address.toString(16)}")
-            } else {
-                println("Failed to write to 0x${address.toString(16)}")
             }
         }
         return successCount

@@ -1,82 +1,41 @@
 # FrostyFunds
 
-A Kotlin/Native memory scanning tool for modifying money and ticket values in the "[Sledding Game Demo](https://store.steampowered.com/app/3438850/Sledding_Game/)". This tool demonstrates process memory manipulation using Windows API calls through Kotlin's C interop.
+![Kotlin](https://img.shields.io/badge/Kotlin-2.2.20-purple?logo=kotlin)
+![Windows](https://img.shields.io/badge/Windows-x64-blue?logo=windows)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Release](https://img.shields.io/github/v/release/Stuie/FrostyFunds)
 
-> **Note:** The money in Sledding Game Demo is only used for purchasing cosmetic items. This tool is for educational purposes and personal experimentation.
+Modify money and ticket values in the [Sledding Game Demo](https://store.steampowered.com/app/3438850/Sledding_Game/).
 
-Make sure to Wishlist the game on Steam!
+- Modify both money and tickets at the same time
+- Tiny download (under 600KB), no installation needed
+- Simple prompts guide you through the process
 
-## Features
+## Download
 
-- 🔍 Interactive memory scanning with two-pass filtering
-- 💰 Simultaneous money and ticket modification
-- 🎯 User-friendly CLI interface
-- 🪟 Native Windows executable with no dependencies
+[![Download Latest Release](https://img.shields.io/github/v/release/Stuie/FrostyFunds?label=Download&style=for-the-badge)](https://github.com/Stuie/FrostyFunds/releases/latest)
 
-## How It Works
+Or visit the [Releases page](https://github.com/Stuie/FrostyFunds/releases) for all versions.
 
-1. **First Scan**: Enter your current money AND ticket amounts, and the tool scans the game's memory for matching values
-2. **Second Scan**: Buy or sell something in-game to change both values (e.g. spin the wheel), then enter the new amounts to narrow down the exact memory addresses
-3. **Modify**: Enter your desired money AND ticket amounts, and the tool writes them to the discovered addresses
-4. **Update**: The in-game display updates after you buy or sell something
+![FrostyFunds scanning memory](assets/FrostyFunds.png)
 
-## Building
+## How to Use
 
-### Prerequisites
+1. Download `FrostyFunds.exe` and run it alongside **Sledding Game Demo**
+2. Enter your current money and ticket amounts
+3. Do something in-game to change them (buy, sell, spin the wheel)
+4. Enter the new amounts
+5. Enter your desired amounts
+6. Do something in-game again to see your new values
 
-- JDK 11 or higher
-- Windows operating system (for mingwX64 target)
+## Note
 
-### Build Commands
+The money in Sledding Game Demo is only used for purchasing cosmetic items. This tool is for educational purposes and personal experimentation.
 
-Build the project:
-```bash
-./gradlew build
-```
+**Make sure to [Wishlist the game on Steam](https://store.steampowered.com/app/3438850/Sledding_Game/)!**
 
-Clean and rebuild:
-```bash
-./gradlew clean build
-```
+---
 
-## Running
+For developers: See [DEVELOPMENT.md](DEVELOPMENT.md) for build instructions and architecture details.
 
-**Important:** Do not run via Gradle (`./gradlew run`) as it doesn't properly connect stdin. Instead, run the built executable directly.
-
-### Executable Location
-
-After building, find the executable at:
-```
-build\bin\native\releaseExecutable\FrostyFunds.exe
-```
-
-### Usage
-
-1. Start the Sledding Game Demo
-2. Run `FrostyFunds.exe`
-3. Follow the interactive prompts:
-   - Enter your current money and ticket amounts
-   - Buy/sell something in-game to change both values
-   - Enter your new money and ticket amounts
-   - Enter your desired money and ticket amounts
-4. Buy or sell something in-game to see the updated value
-
-## Technical Details
-
-- **Language**: Kotlin/Native 2.2.20
-- **Platform**: Windows (mingwX64)
-- **Memory Operations**: Uses Windows API (`ReadProcessMemory`, `WriteProcessMemory`, `VirtualQueryEx`)
-- **Scanning**: Chunks memory into 1MB blocks with 4-byte alignment for integer scans
-
-## Architecture
-
-- `Main.kt` - Interactive CLI entry point with two-pass scanning workflow
-- `WindowsMemory.kt` - `ProcessMemory` object providing Windows API wrappers for process discovery, memory operations, and value scanning
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## Disclaimer
-
-This tool is for educational purposes only. Use responsibly.
+[MIT License](LICENSE)

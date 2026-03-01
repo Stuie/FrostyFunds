@@ -1,63 +1,78 @@
 import kotlinx.cinterop.ExperimentalForeignApi
+import platform.posix.sleep
 
 /**
- * Read a line of input, trim whitespace, and parse as an integer.
- * @return The parsed integer, or null if invalid.
+ * Read an integer from the user with retry logic.
+ * Keeps prompting until a valid integer is entered.
+ *
+ * @param prompt The prompt to display
+ * @return The parsed integer
  */
-private fun readInt(): Int? {
-    return readln().trim().toIntOrNull()
+private fun readIntWithRetry(prompt: String): Int {
+    while (true) {
+        print(prompt)
+        val input = readln().trim()
+
+        // Check if it's a valid number format
+        val asLong = input.toLongOrNull()
+        if (asLong == null) {
+            println("That doesn't look like a number. Try again.")
+            continue
+        }
+
+        // Check if it's within Int range (game likely uses 32-bit integers)
+        if (asLong > Int.MAX_VALUE || asLong < Int.MIN_VALUE) {
+            println("That's outside the acceptable range. Try another number. (0-${Int.MAX_VALUE})")
+            continue
+        }
+
+        return asLong.toInt()
+    }
 }
 
 @OptIn(ExperimentalForeignApi::class)
 fun main() {
     val windowTitle = "Sledding Game Demo"
 
-    println("Searching for process: $windowTitle")
-    val pid = ProcessMemory.findProcessByTitle(windowTitle)
+    println("Looking for Sledding Game Demo...")
 
-    if (pid == null) {
-        println("Process not found. Make sure the game is running.")
-        return
+    var pid = ProcessMemory.findProcessByTitle(windowTitle)
+    while (pid == null) {
+        println("Game not found. Launch the game and get into a lobby.")
+        print("Waiting for game")
+        repeat(5) {
+            sleep(1u)
+            print(".")
+        }
+        println()
+        pid = ProcessMemory.findProcessByTitle(windowTitle)
     }
 
-    println("Found process with PID: $pid")
+    println("Found the game!")
 
     val handle = ProcessMemory.openProcess(pid)
     if (handle == null) {
-        println("Failed to open process. Try running as administrator.")
+        println("Couldn't connect to the game. Try running FrostyFunds as administrator.")
+        print("\nPress Enter to exit...")
+        readln()
         return
     }
 
-    println("Successfully opened process handle")
+    println("Connected successfully!")
 
     // Get initial values from user
-    print("\nEnter your current money amount: ")
-    val initialMoney = readInt()
-    if (initialMoney == null) {
-        println("Invalid number entered.")
-        ProcessMemory.closeHandle(handle)
-        return
-    }
-
-    print("Enter your current ticket amount: ")
-    val initialTickets = readInt()
-    if (initialTickets == null) {
-        println("Invalid number entered.")
-        ProcessMemory.closeHandle(handle)
-        return
-    }
+    println()
+    val initialMoney = readIntWithRetry("Enter your current money amount: ")
+    val initialTickets = readIntWithRetry("Enter your current ticket amount: ")
 
     // First scan
-    println("\nGetting memory regions...")
-    val regions = ProcessMemory.getMemoryRegions(handle, pid)
-    println("Found ${regions.size} readable memory regions")
-
-    println("Scanning for money: $initialMoney and tickets: $initialTickets")
+    val regions = ProcessMemory.getMemoryRegions(handle)
     var moneyCandidates = mutableListOf<ULong>()
     var ticketCandidates = mutableListOf<ULong>()
-    var scannedRegions = 0
 
-    for ((baseAddress, size) in regions) {
+    val scanProgress = ProgressBar("Scanning", regions.size)
+    for ((index, region) in regions.withIndex()) {
+        val (baseAddress, size) = region
         val moneyMatches = ProcessMemory.scanForInt(handle, baseAddress, baseAddress + size, initialMoney)
         val ticketMatches = ProcessMemory.scanForInt(handle, baseAddress, baseAddress + size, initialTickets)
 
@@ -68,11 +83,9 @@ fun main() {
             ticketCandidates.addAll(ticketMatches)
         }
 
-        scannedRegions++
-        if (scannedRegions % 100 == 0) {
-            println("Scanned $scannedRegions/${regions.size} regions...")
-        }
+        scanProgress.update(index + 1)
     }
+    scanProgress.complete()
 
     println("\nFirst scan complete!")
     println("  Money: ${moneyCandidates.size} potential addresses")
@@ -81,90 +94,67 @@ fun main() {
     if (moneyCandidates.isEmpty() && ticketCandidates.isEmpty()) {
         println("No matches found. Make sure you entered the correct amounts.")
         ProcessMemory.closeHandle(handle)
+        print("\nPress Enter to exit...")
+        readln()
         return
     }
 
     // Prompt for second scan
     println("\nNow buy or sell something to change your money and ticket amounts.")
 
-    print("Enter your new money amount: ")
-    val secondMoney = readInt()
-    if (secondMoney == null) {
-        println("Invalid number entered.")
-        ProcessMemory.closeHandle(handle)
-        return
+    // Track whether we had candidates from the first scan
+    val hadMoneyCandidates = moneyCandidates.isNotEmpty()
+    val hadTicketCandidates = ticketCandidates.isNotEmpty()
+
+    // Second scan with retry logic for each type
+    if (hadMoneyCandidates) {
+        while (true) {
+            val secondMoney = readIntWithRetry("Enter your new money amount: ")
+            val filtered = mutableListOf<ULong>()
+            for (address in moneyCandidates) {
+                if (ProcessMemory.readInt(handle, address) == secondMoney) {
+                    filtered.add(address)
+                }
+            }
+            if (filtered.isNotEmpty()) {
+                moneyCandidates = filtered
+                println("  Found ${moneyCandidates.size} matching money addresses")
+                break
+            }
+            println("No matches found. Check the amount and try again.")
+        }
     }
 
-    print("Enter your new ticket amount: ")
-    val secondTickets = readInt()
-    if (secondTickets == null) {
-        println("Invalid number entered.")
-        ProcessMemory.closeHandle(handle)
-        return
-    }
-
-    // Second scan - filter candidates
-    println("\nRe-scanning addresses...")
-
-    if (moneyCandidates.isNotEmpty()) {
-        println("  Checking ${moneyCandidates.size} money addresses for value: $secondMoney")
-        moneyCandidates = ProcessMemory.rescanAddresses(handle, moneyCandidates, secondMoney).toMutableList()
-    }
-
-    if (ticketCandidates.isNotEmpty()) {
-        println("  Checking ${ticketCandidates.size} ticket addresses for value: $secondTickets")
-        ticketCandidates = ProcessMemory.rescanAddresses(handle, ticketCandidates, secondTickets).toMutableList()
+    if (hadTicketCandidates) {
+        while (true) {
+            val secondTickets = readIntWithRetry("Enter your new ticket amount: ")
+            val filtered = mutableListOf<ULong>()
+            for (address in ticketCandidates) {
+                if (ProcessMemory.readInt(handle, address) == secondTickets) {
+                    filtered.add(address)
+                }
+            }
+            if (filtered.isNotEmpty()) {
+                ticketCandidates = filtered
+                println("  Found ${ticketCandidates.size} matching ticket addresses")
+                break
+            }
+            println("No matches found. Check the amount and try again.")
+        }
     }
 
     println("\nSecond scan complete!")
-    println("  Money: ${moneyCandidates.size} matching addresses")
-    println("  Tickets: ${ticketCandidates.size} matching addresses")
-
-    if (moneyCandidates.isEmpty() && ticketCandidates.isEmpty()) {
-        println("No matches found after second scan. The values may not be stored as simple integers.")
-        ProcessMemory.closeHandle(handle)
-        return
-    }
-
-    // Show final addresses
-    if (moneyCandidates.isNotEmpty()) {
-        println("\nMoney addresses:")
-        moneyCandidates.forEach { address ->
-            println("  0x${address.toString(16)}")
-        }
-    }
-
-    if (ticketCandidates.isNotEmpty()) {
-        println("\nTicket addresses:")
-        ticketCandidates.forEach { address ->
-            println("  0x${address.toString(16)}")
-        }
-    }
 
     // Get desired values and write
     if (moneyCandidates.isNotEmpty()) {
-        print("\nEnter the amount of money you want: ")
-        val desiredMoney = readInt()
-        if (desiredMoney == null) {
-            println("Invalid number entered.")
-            ProcessMemory.closeHandle(handle)
-            return
-        }
-
+        val desiredMoney = readIntWithRetry("\nEnter the amount of money you want: ")
         println("Writing $desiredMoney to ${moneyCandidates.size} money addresses...")
         val written = ProcessMemory.writeIntToMultiple(handle, moneyCandidates, desiredMoney)
         println("Successfully wrote to $written/${moneyCandidates.size} addresses")
     }
 
     if (ticketCandidates.isNotEmpty()) {
-        print("\nEnter the amount of tickets you want: ")
-        val desiredTickets = readInt()
-        if (desiredTickets == null) {
-            println("Invalid number entered.")
-            ProcessMemory.closeHandle(handle)
-            return
-        }
-
+        val desiredTickets = readIntWithRetry("\nEnter the amount of tickets you want: ")
         println("Writing $desiredTickets to ${ticketCandidates.size} ticket addresses...")
         val written = ProcessMemory.writeIntToMultiple(handle, ticketCandidates, desiredTickets)
         println("Successfully wrote to $written/${ticketCandidates.size} addresses")
